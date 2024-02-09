@@ -26,17 +26,21 @@ public class TouristRepository {
     }
 
 
-    public void updateTouristAttraction(TouristAttraction touristAttractionUpdated){
-        for (TouristAttraction touristAttraction : touristAttractions){
-            if (touristAttraction == touristAttractionUpdated){
-                touristAttraction.setTouristAttraction(touristAttractionUpdated);
-
+    public TouristAttraction updateTouristAttraction(TouristAttraction touristAttractionUpdated){
+        int i = 0;
+        while (i < touristAttractions.size()){
+            if (touristAttractionUpdated.getName().equals(touristAttractions.get(i).getName())) {
+                touristAttractions.set(i, touristAttractionUpdated);
+                return touristAttractionUpdated;
             }
+            i++;
         }
+        return null;
     }
 
-    public void addTouristAttraction (TouristAttraction touristAttraction){
+    public TouristAttraction addTouristAttraction (TouristAttraction touristAttraction){
                 touristAttractions.add(touristAttraction);
+                return touristAttraction;
     }
 
     public TouristAttraction deleteTouristAttraction(String name) {
@@ -48,6 +52,11 @@ public class TouristRepository {
                 foundIndex = i;
             }
         }
+        if(foundIndex != -1) {
+            returnTouristAttraction = touristAttractions.get(foundIndex);
+            touristAttractions.remove(foundIndex);
+        }
+        return returnTouristAttraction;
     }
 
     public List<TouristAttraction> getTouristAttractions(){

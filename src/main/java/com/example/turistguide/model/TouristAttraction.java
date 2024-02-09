@@ -25,9 +25,10 @@ public class TouristAttraction {
         this.description = description;
     }
 
-    public void setTouristAttraction(TouristAttraction touristAttraction){
+    public TouristAttraction setTouristAttraction(TouristAttraction touristAttraction){
         setName(touristAttraction.getName());
         setDescription(touristAttraction.getDescription());
+        return touristAttraction;
 
     }
 }

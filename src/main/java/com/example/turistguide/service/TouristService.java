@@ -30,13 +30,14 @@ public class TouristService {
     }
 
 
-    public void changeTouristAttraction(TouristAttraction touristAttraction){
+    public TouristAttraction changeTouristAttraction(TouristAttraction touristAttraction){
         touristRepository.updateTouristAttraction(touristAttraction);
+        return touristAttraction;
     }
 
 
-    public void createTouristAttraction(TouristAttraction touristAttraction){
-        touristRepository.addTouristAttraction(touristAttraction);
+    public TouristAttraction createTouristAttraction(TouristAttraction touristAttraction){
+        return touristRepository.addTouristAttraction(touristAttraction);
     }
 
     public List<TouristAttraction> getTouristAttractions(){
