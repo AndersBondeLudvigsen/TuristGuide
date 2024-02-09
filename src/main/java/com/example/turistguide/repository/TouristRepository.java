@@ -4,22 +4,16 @@ import com.example.turistguide.model.TouristAttraction;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Repository
 public class TouristRepository {
-    private ArrayList<TouristAttraction> touristAttractions;
-
-    public TouristRepository() {
-        touristAttractions = new ArrayList<>();
-        TouristAttraction touristAttraction1 = new TouristAttraction("Brøndby Stadion", "God stemning og gode pølser");
-        TouristAttraction touristAttraction2 = new TouristAttraction("Nature Energy Park", "OBs Stadion. God pølsemix. Forvent sure fans");
-        TouristAttraction touristAttraction3 = new TouristAttraction("Parken", "Største danske fodboldstadion, Tag kun derind når Danmarks landshold spiller");
-        TouristAttraction touristAttraction4 = new TouristAttraction("Right to dream park", "Ingen fans, men okay fodbold");
-        touristAttractions.add(touristAttraction1);
-        touristAttractions.add(touristAttraction2);
-        touristAttractions.add(touristAttraction3);
-        touristAttractions.add(touristAttraction4);
-    }
+    private List<TouristAttraction> touristAttractions = new ArrayList<TouristAttraction>(List.of(
+            new TouristAttraction("brøndby Stadion", "God stemning og gode pølser"),
+            new TouristAttraction("nature Energy Park", "OBs Stadion. God pølsemix. Forvent sure fans"),
+            new TouristAttraction("parken", "Største danske fodboldstadion, Tag kun derind når Danmarks landshold spiller"),
+            new TouristAttraction("right to dream park", "Ingen fans, men okay fodbold. DÅRLIG BANE"),
+            new TouristAttraction("h","h")));
 
     public TouristAttraction getTouristAttraction(String name){
 
@@ -45,16 +39,18 @@ public class TouristRepository {
                 touristAttractions.add(touristAttraction);
     }
 
-    public void deleteTouristAttraction(TouristAttraction touristAttractionDelete) {
+    public TouristAttraction deleteTouristAttraction(String name) {
+        int foundIndex = -1;
+        TouristAttraction returnTouristAttraction = new TouristAttraction("Not found","Not found");
 
-        for (TouristAttraction touristAttraction: touristAttractions) {
-            if (touristAttraction.equals(touristAttractionDelete)){
-                touristAttractions.remove(touristAttraction);
+        for (int i = 0; i< touristAttractions.size(); i++) {
+            if (name.equals(touristAttractions.get(i).getName())){
+                foundIndex = i;
             }
         }
     }
 
-    public ArrayList<TouristAttraction> getTouristAttractions(){
+    public List<TouristAttraction> getTouristAttractions(){
         return touristAttractions;
     }
 

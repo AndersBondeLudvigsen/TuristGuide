@@ -4,7 +4,8 @@ import com.example.turistguide.model.TouristAttraction;
 import com.example.turistguide.repository.TouristRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
+import java.util.List;
+
 
 @Service
 public class TouristService {
@@ -20,8 +21,12 @@ public class TouristService {
     }
 
 
-    public void deleteTouristAttraction(TouristAttraction touristAttraction){
-        touristRepository.deleteTouristAttraction(touristAttraction);
+    public TouristAttraction deleteTouristAttraction(String name){
+        TouristAttraction returnTouristAttraction = touristRepository.deleteTouristAttraction(name);
+        if (returnTouristAttraction != null){
+            return returnTouristAttraction;
+        }
+        else return new TouristAttraction("NOT FOUND","NOT FOUND");
     }
 
 
@@ -34,7 +39,7 @@ public class TouristService {
         touristRepository.addTouristAttraction(touristAttraction);
     }
 
-    public ArrayList<TouristAttraction> getTouristAttractions(){
+    public List<TouristAttraction> getTouristAttractions(){
         return touristRepository.getTouristAttractions();
     }
 }

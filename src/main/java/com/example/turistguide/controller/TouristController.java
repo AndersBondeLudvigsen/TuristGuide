@@ -10,13 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class TouristController {
     TouristService touristService;
 
-    public TouristController(){
+    public TouristController() {
         touristService = new TouristService();
     }
-
-
-
-
 
 
 }
